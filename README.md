@@ -10,18 +10,18 @@ NoobDoc is a kotlin program extracting your code business documentation directly
 
 
 ## [NoobDoc-02]-NoobDoc Tag Finder
-### 01-Title and description
+### 01-Title and description
 - [TD01]-NoobDoc title follow pattern "[LanguageInlineCommentSymbol]@[yourDoctag]DocTitle("Your doc title")"
 - [TD02]-If no title is found in the project, default title will be "NoobDoc"
 - [TD03]-NoobDoc description follow pattern "[LanguageInlineCommentSymbol]@[yourDoctag]DocDescription("Your doc description")"
 - [TD04]-If no description is found in the project, none will be displayed
 
-### 02-Section Finder
+### 02-Section Finder
 - [SF00]-NoobDoc section follow pattern "[LanguageInlineCommentSymbol]@[yourDoctag]DocSection("[Section Code]", "[Section Name]")", example are available at rule[@TE01]
 - [SF01]-If no section tag can be found, noob doc will use current file name (without its extension) as section name and N00B-[incremental number] as code
 - [SF02]-Section will be displayed in alphabetical order following [Section Code] param
 
-### 03-Rule Finder
+### 03-Rule Finder
 - [RF00]-NoobDoc rules follow pattern [LanguageInlineCommentSymbol]@[yourDoctag]Doc("[Rule Description]", "[Rule Code]", "[Rule Group]"), example are available at rule [@TE01]
 - [RF01]-Noob doc param are found using regexp "(?\<param\>.+?)"((,\W)|$), sometime double quote and coma combination
 - [RF01]-can fail, use instead their UTF-8 Ascii code %22 and %2C
@@ -30,7 +30,7 @@ NoobDoc is a kotlin program extracting your code business documentation directly
 - [RF03]-NoobDoc works only with inline comment, but if you have the feeling that your description is too long you can write the rest of it in another noobDocTag
 - [RF03]-just give them the same rule code and group and noob doc will display them as one rule in their order of apparition adding the spacing by itself
 
-### 04-NoobDoc Tag exemple
+### 04-NoobDoc Tag exemple
 - [TE01]-java/php/C# with "noob" tag will be //@noobDoc("rule description", "rule code", "rule set name") 
 - [TE02]-python with "monty" tag will be #@montyDoc("rule description", "rule code", "Crule set name") 
 - [TE03]-If you want an exemple of a documentation generated with NoobDoc, you're actually reading one
