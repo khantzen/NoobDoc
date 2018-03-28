@@ -1,0 +1,26 @@
+export: {
+  html: {
+    activated: false,
+    outFolderPath: "doc/html",
+    theme: default
+  },
+
+  dokuWiki: {
+    activated: false,
+    outFolderPath: "doc/doku",
+    theme: default
+  },
+
+  markdown: {
+    activated: false,
+    outFolderPath: "doc/markdown",
+    theme: default
+  },
+
+  text: {
+    activated: false,
+    outFolderPath: "doc/text",
+    theme: default
+  },
+
+}
