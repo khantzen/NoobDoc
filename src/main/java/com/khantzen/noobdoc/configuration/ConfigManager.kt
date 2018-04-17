@@ -2,20 +2,26 @@ package com.khantzen.noobdoc.configuration
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import java.io.File
 import java.io.FileInputStream
 
 class ConfigManager {
-    companion object {
-        fun loadConfig() {
-            val mapper = ObjectMapper(YAMLFactory())
 
-            var configFile = File("config.yml")
 
-            if (!configFile.exists())
-                configFile = FileInputStream("default-config.yml")
+companion object {
+    fun getConfig(): Configuration {
+        var configFile = File("config.yml")
+        if (!configFile.exists())
+            configFile = File(ConfigManager::class.java.classLoader.getResource("default-config.yml").file)
 
-            val configFileStream = FileInputStream(configFile)
-        }
+        val configFileStream = FileInputStream(configFile)
+
+        val mapper = ObjectMapper(YAMLFactory()).registerKotlinModule()
+
+        return mapper.readValue(configFileStream, Configuration::class.java)
     }
+}
+
 }

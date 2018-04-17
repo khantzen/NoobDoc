@@ -9,7 +9,7 @@ import java.util.regex.Pattern
 //@noobDocSection("NoobDoc-02", "NoobDoc Tag Finder")
 class NoobDocTagFinder {
 
-    fun getDocumentationTitle(tag: String, language: String, documentedFile: File): String? {
+    fun getDocumentationTitle(tag: String, language: String, documentedFile: File): String {
         //@noobDoc("NoobDoc title follow pattern %22[LanguageInlineCommentSymbol]@[yourDoctag]DocTitle(%22Your doc title%22)%22", "TD01", "01-Title and description")
         val regexpTitle = """${languageComments(language)}@${tag}DocTitle\("(?<title>.+)"\)"""
 
@@ -23,7 +23,7 @@ class NoobDocTagFinder {
             return titleMatcher.group("title")
 
         //@noobDoc("If no title is found in the project, default title will be "NoobDoc"", "TD02", "01-Title and description")
-        return null
+        return "NoobDoc"
     }
 
     fun getDocumentationDescription(tag: String, language: String, documentedFile: File): String? {

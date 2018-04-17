@@ -1,24 +1,24 @@
-export: {
+exportList: {
   html: {
-    activated: false,
+    activated: true,
     outFolderPath: "doc/html",
     theme: default
   },
 
   dokuWiki: {
-    activated: false,
+    activated: true,
     outFolderPath: "doc/doku",
     theme: default
   },
 
   markdown: {
-    activated: false,
+    activated: true,
     outFolderPath: "doc/markdown",
     theme: default
   },
 
   text: {
-    activated: false,
+    activated: true,
     outFolderPath: "doc/text",
     theme: default
   },

@@ -9,14 +9,16 @@ class DocWriterFactory {
 
     companion object {
         fun buildWriter(key: String): IDocWriter {
-            when (key) {
-                DocTextWriter.KEY -> return DocTextWriter()
-                DocDokuWikiWriter.KEY -> return DocDokuWikiWriter()
-                DocMarkDownWriter.KEY -> return DocMarkDownWriter()
-                else -> throw IllegalArgumentException("No doc writer available for type : $key, available type are html / dokuWiki / markdown / text")
+            return when (key) {
+                DocTextWriter.KEY -> DocTextWriter()
+                DocDokuWikiWriter.KEY -> DocDokuWikiWriter()
+                DocMarkDownWriter.KEY -> DocMarkDownWriter()
+                else ->
+                    throw IllegalArgumentException(
+                            "No doc writer available for type : $key, " +
+                                    "available type are html / dokuWiki / markdown / text"
+                    )
             }
-
-
         }
     }
 }
