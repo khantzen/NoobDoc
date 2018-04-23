@@ -1,26 +1,42 @@
 exportList: {
   html: {
-    activated: true,
+    activated: false,
     outFolderPath: "doc/html",
-    theme: default
+    theme: default,
+    displaySectionCode: true,
+    displayRuleCode: false,
+    onePageDoc: false,
+    namespace: 'N/A'
   },
 
   dokuWiki: {
     activated: true,
-    outFolderPath: "doc/doku",
-    theme: default
+    outFolderPath: 'C:\wamp64\www\apcDoc\data\pages\apc_web_service\',
+    theme: default,
+    displaySectionCode: true,
+    displayRuleCode: false,
+    onePageDoc: false,
+    namespace: apc_web_service
   },
 
   markdown: {
-    activated: true,
+    activated: false,
     outFolderPath: "doc/markdown",
-    theme: default
+    theme: default,
+    displaySectionCode: true,
+    displayRuleCode: false,
+    onePageDoc: false,
+    namespace: 'N/A'
   },
 
   text: {
-    activated: true,
+    activated: false,
     outFolderPath: "doc/text",
-    theme: default
+    theme: default,
+    displaySectionCode: true,
+    displayRuleCode: false,
+    onePageDoc: false,
+    namespace: 'N/A'
   },
 
 }
