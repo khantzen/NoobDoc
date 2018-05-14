@@ -5,6 +5,8 @@ import com.khantzen.noobdoc.model.Documentation
 import com.khantzen.noobdoc.model.Rule
 import com.khantzen.noobdoc.model.RuleGroup
 import com.khantzen.noobdoc.model.Section
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Pattern
 
 class DocDokuWikiWriter : IDocWriter {
@@ -58,8 +60,13 @@ class DocDokuWikiWriter : IDocWriter {
             finalString.appendln()
         }
 
-        if (!export.onePageDoc)
-            finalString.append("Generated with  [[https://github.com/khantzen/NoobDoc|NoobDoc]]")
+        if (!export.onePageDoc) {
+            val dateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm")
+            val calendar = Calendar.getInstance()
+            val date = dateFormat.format(calendar.time)
+            finalString.append(" --- // [[https://github.com/khantzen/NoobDoc|Generated with NoobDoc $date]]")
+        }
+
 
         return finalString.toString()
     }
