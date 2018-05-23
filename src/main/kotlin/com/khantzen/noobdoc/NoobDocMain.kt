@@ -27,7 +27,6 @@ fun main(args: Array<String>) {
 
     val config = ConfigManager.getConfig()
 
-
     val exportList = config.exportList.filter { it.value.activated }
 
     if (exportList.isEmpty()) {
@@ -51,7 +50,10 @@ fun main(args: Array<String>) {
             for (section in doc.sectionList) {
                 val docText = docWriter.writeSection(section, doc, export)
                 println(docText)
-                val sectionDocFile = File(export.outFolderPath + section.title.toLowerCase().replace(" ", "_") + ".txt")
+
+                val title = "${section.code.toLowerCase()}-${section.title.toLowerCase().replace(" ", "_")}"
+
+                val sectionDocFile = File(export.outFolderPath + title + ".txt")
                 sectionDocFile.writeText(docText, Charset.defaultCharset())
             }
         }

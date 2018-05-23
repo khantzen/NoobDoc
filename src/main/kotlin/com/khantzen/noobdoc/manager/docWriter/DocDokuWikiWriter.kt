@@ -11,7 +11,6 @@ import java.util.regex.Pattern
 
 class DocDokuWikiWriter : IDocWriter {
     companion object {
-
         val KEY = "dokuWiki"
     }
 
@@ -53,7 +52,7 @@ class DocDokuWikiWriter : IDocWriter {
                     ruleDescription = "[${rule.code}]-$ruleDescription"
 
                 ruleDescription = setIntraSectionLink(ruleDescription, doc.sectionList, export.namespace)
-                ruleDescription = setInFileRuleLink(ruleDescription, section.ruleGroupList, export.namespace, section.title)
+                ruleDescription = setInFileRuleLink(ruleDescription, section.ruleGroupList, export.namespace, section)
 
                 finalString.appendln("$ruleDescription\\\\")
             }
@@ -82,11 +81,14 @@ class DocDokuWikiWriter : IDocWriter {
             val section = sectionList.firstOrNull { it.code == sectionCode } ?: continue
 
             val intraLinkAnchor =
+                    sectionCode.toLowerCase() + "-" +
                     section.title.toLowerCase().replace(" ", "_") +
                             "#" +
                             section.code.toLowerCase().replace(" ", "_")
 
-            val intraLink = "([[$dokuNameSpace:$intraLinkAnchor|@${section.code}]])"
+            println(intraLinkAnchor)
+
+            val intraLink = "[[$dokuNameSpace:$intraLinkAnchor|@${section.code}]]"
 
             finalDescription = sectionCodeMatches.replaceFirst(intraLink)
         }
@@ -94,7 +96,7 @@ class DocDokuWikiWriter : IDocWriter {
         return finalDescription;
     }
 
-    private fun setInFileRuleLink(description: String, ruleList: List<RuleGroup>, dokuNameSpace: String, currentSection: String): String {
+    private fun setInFileRuleLink(description: String, ruleList: List<RuleGroup>, dokuNameSpace: String, currentSection: Section): String {
         var finalDescription = description
 
         val ruleCodePattern = Pattern.compile("\\[@@(?<ruleGroup>.+?)]")
@@ -105,11 +107,12 @@ class DocDokuWikiWriter : IDocWriter {
             val ruleGroup = ruleList.firstOrNull { it.name == ruleGroupName } ?: continue
 
             val intraLinkAnchor =
-                    currentSection.toLowerCase().replace(" ", "_") +
+                    currentSection.code + "-" +
+                    currentSection.title.toLowerCase().replace(" ", "_") +
                     "#" +
                     ruleGroup.name.toLowerCase().replace(" ", "_").replace("^\\d*-", "")
 
-            val intraLink = "([[$dokuNameSpace:$intraLinkAnchor|@${ruleGroup.name}]])"
+            val intraLink = "[[$dokuNameSpace:$intraLinkAnchor|@${ruleGroup.name}]]"
 
             finalDescription = ruleCodeMatches.replaceFirst(intraLink)
         }

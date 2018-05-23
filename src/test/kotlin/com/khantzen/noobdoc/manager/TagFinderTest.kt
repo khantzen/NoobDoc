@@ -61,7 +61,7 @@ class TagFinderTest {
     @Test
     fun selfDocumentationKotlinTest() {
         val tag = "noob"
-        val documentedFile = File("src/main/java/com/khantzen/noobdoc/manager/NoobDocTagFinder.kt")
+        val documentedFile = File("src/main/kotlin/com/khantzen/noobdoc/manager/NoobDocTagFinder.kt")
 
         val section: Section = tagFinder.buildSectionWithRulesFromFile(tag, "kotlin", documentedFile)!!
         println("Documentation")

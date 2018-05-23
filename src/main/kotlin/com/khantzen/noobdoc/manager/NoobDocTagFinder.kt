@@ -114,10 +114,20 @@ class NoobDocTagFinder {
             if (ruleGroup.size == 0 || ruleGroup.stream().noneMatch({ it.name == rule.ruleGroup }))
                 ruleGroup.add(RuleGroup(rule.ruleGroup, mutableListOf()))
 
-            ruleGroup.stream()
+
+            val ruleList = ruleGroup.stream()
                     .filter({ it.name == rule.ruleGroup })
-                    .findFirst().get()
-                    .ruleList.add(rule)
+                    .findFirst().get().ruleList
+
+            val existingRule = ruleList.stream().filter({it.code == rule.code}).findFirst().orElse(null)
+
+            if (existingRule == null) { // Si la rule n'existe pas on la rajoute
+                ruleList.add(rule)
+                continue@matcherLoop
+            }
+
+            // Sinon on lui rajoute la description de la rule en cours
+            existingRule.description = existingRule.description + " " + rule.description
         }
 
         ruleGroup = ruleGroup.sortedBy({ it.name }).toMutableList()
@@ -149,8 +159,6 @@ class NoobDocTagFinder {
         if (param.size < 3) {
             return null
         }
-
-
 
         return Rule(param[0], param[1], param[2])
     }

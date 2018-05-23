@@ -1,7 +1,7 @@
 package com.khantzen.noobdoc.model
 
 data class Rule(
-        val description: String,
+        var description: String,
         val code: String,
         val ruleGroup: String
 )
